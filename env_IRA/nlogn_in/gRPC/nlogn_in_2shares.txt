@@ -1,0 +1,76 @@
+in with 1 elements: {a:0, }
+randoms with 1 elements: {r01:0, }
+out with 1 elements: {c:0, }
+Circuit with 3 variables
+total_wires = 5
+secret_count = 1
+output_count = 1
+random_count = 1
+share_count = 2
+all_shares_mask = 3
+contains_mults = 0
+has_input_rands = 0
+mult_count = 0
+characteristic = 3329
+Dependencies:
+  0: { [ 1 0 0 ] 1 0  }  [a0]
+  1: { [ 0 1 0 ] 0 1  }  [a1]
+  2: { [ 0 0 1 ] 0 0  }  [r01]
+  3: { [ 1 0 1 ] 1 0  }  [c0]
+  4: { [ 0 1 3328 ] 0 1  }  [c1]
+Gadget with 1 input(s),  1 output(s),  2 share(s)
+Total number of intermediate variables : 3
+Total number of variables : 5
+Total number of Wires : 5
+Total number of duplications: 1
+
+I_set = [  ] , O_set = [  ]
+f(p) = [ 1, 3, 3, 1, 0, 0]
+
+I_set = [  ] , O_set = [ 3 ]
+f(p) = [ 1, 0, 0, 0, 0, 0]
+
+I_set = [  ] , O_set = [ 4 ]
+f(p) = [ 1, 0, 0, 0, 0, 0]
+
+I_set = [  ] , O_set = [ 3, 4 ]
+f(p) = [ 0, 0, 0, 0, 0, 0]
+
+I_set = [ 0 ] , O_set = [  ]
+f(p) = [ 0, 1, 3, 3, 1, 0]
+
+I_set = [ 0 ] , O_set = [ 3 ]
+f(p) = [ 0, 4, 6, 4, 1, 0]
+
+I_set = [ 0 ] , O_set = [ 4 ]
+f(p) = [ 0, 1, 0, 0, 0, 0]
+
+I_set = [ 0 ] , O_set = [ 3, 4 ]
+f(p) = [ 0, 0, 0, 0, 0, 0]
+
+I_set = [ 1 ] , O_set = [  ]
+f(p) = [ 0, 1, 3, 3, 1, 0]
+
+I_set = [ 1 ] , O_set = [ 3 ]
+f(p) = [ 0, 1, 0, 0, 0, 0]
+
+I_set = [ 1 ] , O_set = [ 4 ]
+f(p) = [ 0, 4, 6, 4, 1, 0]
+
+I_set = [ 1 ] , O_set = [ 3, 4 ]
+f(p) = [ 0, 0, 0, 0, 0, 0]
+
+I_set = [ 0, 1 ] , O_set = [  ]
+f(p) = [ 0, 0, 1, 3, 3, 1]
+
+I_set = [ 0, 1 ] , O_set = [ 3 ]
+f(p) = [ 0, 0, 4, 6, 4, 1]
+
+I_set = [ 0, 1 ] , O_set = [ 4 ]
+f(p) = [ 0, 0, 4, 6, 4, 1]
+
+I_set = [ 0, 1 ] , O_set = [ 3, 4 ]
+f(p) = [ 1, 5, 10, 10, 5, 1]
+
+
+Verification completed in 0 min 0 sec.
