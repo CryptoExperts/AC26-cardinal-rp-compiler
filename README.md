@@ -20,7 +20,7 @@ This repository contains all the scripts necessary to reproduce the results pres
 
 In the following, we may refer to the full version of this publication, which includes an appendix and minor revisions to the main text. In particular, additional figures have been included, some in the main body and others in the appendix, which is why we refer to figures from the full version rather than those in the published version. The full version is available here:
 
-**TODO**
+https://eprint.iacr.org/2026/2015
 
 This project reuses files from other MIT-licensed CryptoExperts repositories.
 

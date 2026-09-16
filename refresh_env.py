@@ -1695,7 +1695,7 @@ def env_cRPC_di_ideal (n, p) :
   env = np.zeros((n + 1, n + 1))
   for tout in range (n) :
     for tin in range (n) :
-      env[tin, tout] = math.comb(n, tin) * p**tin * (1 - p)**(n - tin)
+      env[tin, tout] = math.comb(n, tin) * p**tin * (1 - p)**(n - tin) * (1 - p**(2 * (n - tout)))
     
     env[n, tout] = p**n + (1 - p**n) *  p**(2 * (n - tout))
 
@@ -1720,7 +1720,8 @@ def env_gRPC_di_ideal (n, p) :
     card_I = I.bit_count()
     comp = p**card_I * (1 - p)**(n - card_I)
     for J in range (lim) :
-      env_gen[(I, J)] = comp
+      card_J = J.bit_count()
+      env_gen[(I, J)] = comp * (1 - p**(2 * (n - card_J)))
 
     env_gen[(I, lim)] = 0
 
@@ -3942,6 +3943,13 @@ if __name__ == "__main__" :
   #test_precision_cRPC(n, p)
   #print()
   #test_precision_gRPC(n, p)
+
+  n = 6
+  p = 2**-20
+  env = env_cRPC_di_ideal (n, p)
+
+  print_env(n, env)
+
 
 
 

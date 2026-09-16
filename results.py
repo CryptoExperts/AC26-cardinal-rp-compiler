@@ -403,8 +403,8 @@ def AES_graph(n, p) :
   
   for idx, refresh in enumerate(refresh_types):
     placed_points = []
-    min_dist = tol          # distance verticale sous laquelle on décale
-    offset_step = 0.1      # taille du décalage horizontal
+    min_dist = tol          
+    offset_step = 0.1      
 
     for variant in variants:
         if variant in data[refresh]:
@@ -474,21 +474,17 @@ def AES_graph(n, p) :
 
   ax.margins(x=0.1)
   ax.set_xticks(range(len(refresh_types)))
-  #ax.set_xticklabels(refresh_types)
 
   ax.set_xticklabels([
     f"{r}\n{'N/A' if np.isinf(refresh_costs[r]) else f'{refresh_costs[r]:.0f}'}"
     for r in refresh_types
   ], fontsize=13)
 
-  #ax.set_xlabel("Refresh type")
   ax.set_ylabel(r"$\log_2$ security advantage")
-  #ax.set_title("RPS security of AES by refresh type")
 
   ax.grid(True, linestyle="--", alpha=0.4)
   legend_elements = []
 
-  #for variant in variants:
   color_legend = [
       Line2D(
         [0], [0],
@@ -577,9 +573,6 @@ def AES_graph(n, p) :
 
   ax.add_artist(legend1)
   ax.add_artist(legend2)
-
-
-  #ax.legend(handles=legend_elements)
 
   plt.tight_layout()
   plt.savefig(f"AES_refresh_n{n}_p{logp}.pdf")
@@ -708,6 +701,7 @@ def compare_raccoon_keygen():
       loaded = np.load(filename_prec_raccoon, allow_pickle=True)
       Advantages = loaded[0]
       Complexities = loaded[1]
+
     else : 
       Advantages = {
         "DoubleHalf" : 1.0,
@@ -848,7 +842,6 @@ def graph_raccoon(Advantages, Complexities, p, filename):
         for label in labels
     ], fontsize=13)
 
-  #ax.set_xlabel("Refresh type\n(complexity below)")
   ax.set_ylabel(r"$\log_2$ security advantage")
 
   ax.grid(True, linestyle="--", alpha=0.4)
@@ -1065,23 +1058,19 @@ def compare_refresh_st1() :
       close_02 = are_close(ax, n, eps_ideal, eps_euro)
       close_12 = are_close(ax, n, eps_ideal_ze, eps_euro)
 
-      # Les trois points sont proches
       if close_01 and close_02 and close_12:
         x[0] = n - offset
         x[1] = n
         x[2] = n + offset
 
-      # Seulement 0 et 1
       elif close_01:
         x[0] = n - offset / 2
         x[1] = n + offset / 2
 
-      # Seulement 0 et 2
       elif close_02:
         x[0] = n - offset / 2
         x[2] = n + offset / 2
 
-      # Seulement 1 et 2
       elif close_12:
         x[1] = n - offset / 2
         x[2] = n + offset / 2
@@ -1203,7 +1192,6 @@ def composition_genRPC_ideal_plot(n_values, p, nb_compo):
     for i in range(2, 2 + len(n_values))
   ]
 
-  # légende pour les styles
   style_handles = [
     Line2D([0], [0], color="black", lw=2, linestyle="-", label="Direct"),
     Line2D([0], [0], color="black", lw=2, linestyle="--", label="Zero Encoding"),
@@ -1215,7 +1203,6 @@ def composition_genRPC_ideal_plot(n_values, p, nb_compo):
   
   ax.set_xlabel("Number of compositions")
   ax.set_ylabel("Threshold RPC security advantage")
-  #ax.legend()
   ax.set_yscale("log", base=2)
   ax.grid(True)
 
@@ -1243,7 +1230,6 @@ if __name__ == "__main__" :
 
   #Responsible of Figure 10 of the full version of the article.
   compare_raccoon_sign()
-
 
 
 
