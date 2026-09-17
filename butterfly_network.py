@@ -284,9 +284,10 @@ def new_tRPC_butterfly (n, env_butterfly) :
     cardinal RPC enveloppes `env_butterfly` of the first stage of 
     the butterfly network. 
   """  
-  eps = 0
+  eps = 1
   for t in range (1, n) :
     eps_t = tRPC_butterfly(n, env_butterfly, t)
-    eps = max(eps, eps_t)
+    eps = min(eps, eps_t)
+
   return eps
 
