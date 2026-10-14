@@ -211,8 +211,7 @@ def gRPC_from_gRPP (n, p, env_gRPP) :
   
 def build_q_tin_J(n, env_gRPP):
   """
-  Copy of the function above, instead the return type os different. TODO :
-  Factorize the two functions.
+  Copy of the function above, instead the return type is different.
   """
   parts = [(part_to_block_masks(part), p) for part, p in env_gRPP.items()]
   q = np.zeros((n + 1, (1 << n + 1)))
@@ -223,7 +222,6 @@ def build_q_tin_J(n, env_gRPP):
     q_J = np.zeros((n + 1))
 
     notJ = ~J
-    #qJ = q_by_J[J]
     for blocks, p in parts:
       I = 0
       for M in blocks:
@@ -396,10 +394,7 @@ def cRPP_output_manipulation(int_partitions_list, env_cRPP, binom_coeffs, p, n):
   initial_probabilities = list(env_cRPP)
   env_cRPP_out = [0] * len(env_cRPP)
 
-  # Convert int_partitions_list to a dictionary for O(1) lookups
   int_partitions_dict = {tuple(cs): idx for idx, cs in enumerate(int_partitions_list)}
-
-  # Precompute the powers of p and (1-p) for efficiency
   p_powers = [p**i for i in range(n+1)]
   one_minus_p_powers = [(1-p)**i for i in range(n+1)]
 
@@ -407,15 +402,11 @@ def cRPP_output_manipulation(int_partitions_list, env_cRPP, binom_coeffs, p, n):
     # (k1, k2, ..., kl) with ki the number of elements leaking in the set of cardinal ci
     all_combinations = itertools.product(*[range(c + 1) for c in cs])
     for combo in all_combinations:
-      # we build the corresponding partition cs_2
       s = sum(combo)
-      # we remove all the leaking elements from the cardinals
       updated_partition = [ci - ki for ci, ki in zip(cs, combo) if ci - ki > 0]
-      # we add ones for all the leaking elements
       updated_partition.extend([1] * s)
       index_updated_set = find_cardinal_set_index(int_partitions_dict, updated_partition)
             
-      # we compute the probability of the leakage
       pleak = 1
       for ci, ki in zip(cs, combo):
         pleak *= binom_coeffs[(ci, ki)] * p_powers[ki] * one_minus_p_powers[ci-ki]
@@ -680,7 +671,6 @@ def __canonize_partitions__(rgs):
   Returns:
       bytes: Canonical representation of the partition.
   """  
-  # Fast mapping table for byte values
   map = [-1] * 256
   out = bytearray(len(rgs))
   nxt = 0
@@ -1827,7 +1817,6 @@ def env_gRPP_ze_ideal(n, p):
   p1 = p + (1 - p) * p**2
   env_gRPP = defaultdict(float)
 
-  # I is the set of elements leaving the main block.
   for I in range(1 << n):
 
     card_I = I.bit_count()
@@ -1837,20 +1826,15 @@ def env_gRPP_ze_ideal(n, p):
       * (1 - p1)**(n - card_I)
     )
 
-    # Initially, every element belongs to the same block.
     part = bytearray(n)
 
-    # Every element of I leaves the main block and gets its own singleton.
     label = 1
     for i in range(n):
       if I & (1 << i):
         part[i] = label
         label += 1
 
-    # Put the partition in your canonical RGS representation.
     part = __canonize_partitions__(part)
-
-    # Several leakage patterns can yield the same partition.
     env_gRPP[part] += proba
 
   return dict(env_gRPP)
@@ -3931,25 +3915,6 @@ def test_precision_gRPC (n, p) :
   method1 = ana_env_gRPC_ze_doublehalf
   method2 = IRA_env_gRPC_ze_doublehalf
   compare_methods(method1, method2, name_ref)
-
-
-
-
-if __name__ == "__main__" :
-  print("main")
-
-  #Responsible of the last sentence of section 5.3.
-
-  #test_precision_cRPC(n, p)
-  #print()
-  #test_precision_gRPC(n, p)
-
-  n = 6
-  p = 2**-20
-  env = env_cRPC_di_ideal (n, p)
-
-  print_env(n, env)
-
 
 
 

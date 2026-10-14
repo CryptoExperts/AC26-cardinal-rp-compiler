@@ -340,10 +340,7 @@ def AES_graph(n, p) :
     tmp = partial(comp_ref_rprefresh, gamma = gamma)
     r_comp_RPR, _ , _, _ = comp_AES_enc(n, tmp, tmp, tmp, [tmp for _ in range (nh + 1)])
   
-  if (thr_gamma) :
-    #I use the ZE version to optimize the gamma, may be non optimized for the
-    #direct version.
-    
+  if (thr_gamma) :    
     filename_optimize = f"./prec/opti_gamma/AES_opti_gamma_{n}_p{logp}.npy"
     if(os.path.exists(filename_optimize)):
       eps_AES51, eps_AES52, gamma_ark, gamma_mc, gamma_sb, l_gamma_sb = np.load(filename_optimize, allow_pickle=True)
@@ -374,11 +371,6 @@ def AES_graph(n, p) :
     tmp_mc = partial(comp_ref_rprefresh, gamma = gamma_mc)
     tmp_sb = partial(comp_ref_rprefresh, gamma = gamma_sb)
     r_comp_RPR, _, _, _ = comp_AES_enc(n, tmp_ark, tmp_mc, tmp_sb, [ partial(comp_ref_rprefresh, gamma = l_gamma_sb[i]) for i in range (nh + 1)])
-  
-  print("gamma_ark = ", gamma_ark)
-  print("gamma_mc = ", gamma_mc)
-  print("gamma_sb = ", gamma_sb)
-  print("gamma_mult = ", l_gamma_sb)
 
   refresh_costs = {
     "Linear": r_comp_linear,

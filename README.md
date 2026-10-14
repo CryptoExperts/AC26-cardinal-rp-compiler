@@ -14,9 +14,12 @@
 
 # AC26 - Cardinal RP Compiler
 
-This repository contains all the scripts necessary to reproduce the results presented in the paper:
+This repository contains all the scripts necessary to reproduce the results
+presented in the paper :
 
 "A Unified Analysis of Refresh Gadgets in the Random Probing Model" by Sonia Belaïd, Victor Normand and Matthieu Rivain, published at Asiacrypt 2026.
+
+Specifically, these scripts reproduce Figures 2, 6a, 6b, 7, and 10, as well as the result stated in the last sentence of Section 5.3.
 
 In the following, we may refer to the full version of this publication, which includes an appendix and minor revisions to the main text. In particular, additional figures have been included, some in the main body and others in the appendix, which is why we refer to figures from the full version rather than those in the published version. The full version is available here:
 
@@ -167,6 +170,16 @@ in [results.py] for a better understanding of what each parameter does.
 ## License
 
 This project is distributed under the **MIT License**.
+
+## AI Acknowledgment
+
+ChatGPT was used to assist with documentation by improving the spelling and
+grammar of text originally written by the authors. It was also occasionally used
+to generate functions or parts of functions in the [refresh_env.py] file,
+particularly those implementing the conversions between cRPP, gRPP, cRPC, and
+gRPC, which can be found in the 'Useful Notions' section of the file. All
+AI-generated content was reviewed and verified
+by the authors. 
 
 ##
 
